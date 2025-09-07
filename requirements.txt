@@ -1,0 +1,20 @@
+# Core requirements
+dora-rs
+pyarrow
+numpy
+
+# VR and Robot control
+ppadb  # Pure Python ADB library for Quest communication
+
+# IK solver dependencies  
+pinocchio
+casadi
+meshcat
+
+# Utilities
+scipy
+transforms3d
+
+# Note: piper-sdk must be installed from local source:
+# cd /home/dora/dora-pipers/questVR_ws/src/Piper_ros/src/piper
+# pip install .

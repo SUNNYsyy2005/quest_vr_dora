@@ -1,0 +1,25 @@
+nodes:
+  - id: vr_reader
+    path: nodes/vr_reader_node.py
+    inputs:
+      tick: dora/timer/millis/20
+    outputs:
+      - transforms
+      - buttons
+    env:
+      VIRTUAL_ENV: /home/dora/miniconda3/envs/vt
+  - id: ik_solver_bak
+    path: nodes/ik_solver_exact.py
+    inputs:   
+      transforms: vr_reader/transforms
+      buttons: vr_reader/buttons
+    outputs:
+      - joint_commands
+    env:
+      VIRTUAL_ENV: /home/dora/miniconda3/envs/vt
+  - id: robot_controller
+    path: nodes/robot_controller_node.py
+    inputs:
+      joint_commands: ik_solver_bak/joint_commands
+    env:
+      VIRTUAL_ENV: /home/dora/miniconda3/envs/vt
