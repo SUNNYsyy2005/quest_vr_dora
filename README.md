@@ -16,6 +16,18 @@
 - Piper机械臂通过CAN总线连接
 - Python环境（已配置好vt虚拟环境）
 
+## 环境安装
+### conda vt环境
+```
+sudo apt install android-tools-adb
+conda create -n vt python=3.9
+conda activate vt
+conda install pinocchio==3.2.0 casadi==3.6.7 -c conda-forge
+pip install meshcat rospkg pyyaml pure-python-adb piper-sdk
+```
+### Meta Quest配置
+参考 <https://github.com/agilexrobotics/questVR_ws/tree/master>
+
 ## 快速开始
 
 ### 1. 连接硬件
@@ -91,7 +103,7 @@ quest_vr_dora_clean/
 
 ### Quest未连接
 - 检查USB连接
-- 确保Quest开启了USB调试
+- 确保Quest开启了USB调试(通知界面点击开启调试)
 - 运行 `adb devices` 确认设备连接
 
 ### 机械臂不响应
@@ -99,29 +111,5 @@ quest_vr_dora_clean/
 - 确认CAN接口已启用：`sudo ip link set can0 up`
 - 查看日志文件：`out/*/log_robot_controller.txt`
 
-### 控制卡顿
-- 检查CPU使用率
-- 确保没有其他程序占用资源
-- 查看IK求解器日志确认没有求解失败
-
-## 技术细节
-
-- 控制频率：50Hz (20ms)
-- 通信协议：USB ADB (Quest) + CAN Bus (Robot)
-- IK求解器：Pinocchio + CasADi
-- 坐标系：右手坐标系
-
-### 关于oculus_reader.py
-
-这是原版的Quest通信库：
-- 使用`ppadb` (Pure Python ADB) 库进行Quest通信
-- 自动安装Quest VR应用APK
-- 支持USB和WiFi连接模式
-- 完整的错误处理和设备检测
-
-## 更新历史
-
-- 修复了夹爪控制类型转换问题
-- 修复了B按键松开后位置保持问题
-- 优化了控制响应速度，减少卡顿
-- 改进了IK求解的实时性
+### ros版本正常，dora版本不能跑
+- 重新插拔Quest
