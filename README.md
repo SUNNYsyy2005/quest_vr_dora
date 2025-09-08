@@ -53,8 +53,13 @@ cd /home/dora/dora-pipers/quest_vr_dora_clean
 **手动启动：**
 ```bash
 # 1. 激活CAN接口
+bash can_activate.sh can0 1000000 
+```
+上述命令只适用于连接单臂情况，如果两臂同时连接，请参考报错，添加上最后一个参数
+```bash
 bash can_activate.sh can0 1000000 3-8.4.3:1.0
-
+```
+```bash
 # 2. 激活环境
 conda activate vt
 export LD_LIBRARY_PATH="$CONDA_PREFIX/lib"
